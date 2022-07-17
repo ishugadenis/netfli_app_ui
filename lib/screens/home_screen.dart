@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_ui_app/data/data.dart';
 import '../widgets/widgets.dart';
+import '../cubits/cubits.dart';
+import 'package:bloc/bloc.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}): super(key:key);
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
- // const HomeScreen({Key? key}) : super(key: key);
- //    ScrollController? _scrollController;
- //
- //  double _scrollOffset =0.0;
- //  @override
- //  void initState() {
- //     _scrollController =ScrollController()..addListener((){
- //       setState(() {
- //         _scrollController =_scrollController.offset ;
- //       });
- //     });
- //    super.initState();
- //  }
- //
- //  @override
- //  void dispose() {
- //    _scrollController.dispose();
- //    super.dispose();
- //  }
+  //   ScrollController? _scrollController;
+  //
+  // @override
+  // void initState() {
+  //    _scrollController =ScrollController()..addListener((){
+  //
+  //      context.watch<AppBarCubit>().setOffset(_scrollController);
+  //    });
+  //   super.initState();
+  // }
+  //
+  // @override
+  // void dispose() {
+  //   _scrollController!.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
           SliverPadding(padding:EdgeInsets.only(top: 20),
             sliver: SliverToBoxAdapter(
               child: Previews(
+                key: PageStorageKey('myList'),
                 title: 'Previews',
                     contentList: previews,
               )
@@ -59,12 +60,14 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           SliverToBoxAdapter(
             child: ContentList(
+              key: PageStorageKey('myList'),
              title: 'My List',
               contentList: myList,
             ),
           ),
           SliverToBoxAdapter(
             child: ContentList(
+              key: PageStorageKey('originals'),
               title: 'Netflix Originals',
               contentList: originals,
               isOriginals: true,
@@ -72,6 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           SliverToBoxAdapter(
             child: ContentList(
+              key:PageStorageKey('trending'),
               title: 'Trending',
               contentList: trending,
 
